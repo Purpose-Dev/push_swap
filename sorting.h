@@ -6,7 +6,7 @@
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 10:47:54 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/05/16 10:49:02 by rel-qoqu         ###   ########.fr       */
+/*   Updated: 2025/05/16 10:50:10 by rel-qoqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,8 @@ void	rr(t_stack *a, t_stack *b);
 void	rra(t_stack *a);
 void	rrb(t_stack *b);
 void	rrr(t_stack *a, t_stack *b);
+
+void	sort_stack(t_stack *a, t_stack *b, int argc);
+void	index_stack(t_stack *stack);
 
 #endif // SORTING_H
