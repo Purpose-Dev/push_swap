@@ -6,7 +6,7 @@
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 10:38:55 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/05/16 12:03:40 by rel-qoqu         ###   ########.fr       */
+/*   Updated: 2025/05/16 12:20:40 by rel-qoqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
-# include "libft.h"
+# include "libft/libft.h"
 
 # define TRUE 1
 # define FALSE 0
@@ -35,7 +35,7 @@ typedef struct s_stack
 
 t_stack	*init_stack(void);
 void	push(t_stack *stack, int value);
-int		pop(t_stack, *stack);
+int		pop(t_stack *stack);
 void	clear_stack(t_stack *stack);
 
 void	error_and_exit(const char *msg);
