@@ -6,7 +6,7 @@
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 10:38:55 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/05/16 10:42:02 by rel-qoqu         ###   ########.fr       */
+/*   Updated: 2025/05/16 10:44:16 by rel-qoqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,12 @@ typedef struct s_stack
 	t_node *top;
 	int		size;
 }	t_stack;
+
+t_stack	*init_stack(void);
+void	push(t_stack *stack, int value);
+int		pop(t_stack, *stack);
+void	clear_stack(t_stack *stack);
+
+void	error_and_exit(const char *msg);
 
 #endif // PUSH_SWAP_H
