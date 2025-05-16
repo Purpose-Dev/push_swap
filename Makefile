@@ -6,7 +6,7 @@
 #    By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/16 10:19:39 by rel-qoqu          #+#    #+#              #
-#    Updated: 2025/05/16 10:37:15 by rel-qoqu         ###   ########.fr        #
+#    Updated: 2025/05/16 11:59:02 by rel-qoqu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,8 @@ LIBFT		= $(LIBFT_DIR)/libft.a
 OBJ_DIR			= objs
 DEBUG_DIR		= debug_objs
 
-SRCS		= main.c comparator.c parsing.c sorting.c
+SRCS		= main.c comparator.c index.c operations_1.c operations_2.c \
+				operations_3.c parse.c sort_large.c sort_small.c stack.c
 OBJS		= $(patsubst %.c, $(OBJ_DIR)/%.o, $(SRCS))
 DEBUG_OBJS	= $(patsubst %.c, $(DEBUG_DIR)/%.o, $(SRCS))
 
