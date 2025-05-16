@@ -6,7 +6,7 @@
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 10:51:44 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/05/16 18:04:25 by rel-qoqu         ###   ########.fr       */
+/*   Updated: 2025/05/16 18:09:31 by rel-qoqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	check_arguments(int argc, char **argv, int *v_flag)
 	*v_flag = 0;
 	if (argc <= 1)
 		return (FALSE);
-	if (!ft_strcmp(argv[1], "-v"))
+	if (!ft_strncmp(argv[1], "-v", 2))
 		*v_flag = 1;
 	i = 1 + *v_flag;
 	while (i < argc)
@@ -70,7 +70,7 @@ int	check_arguments(int argc, char **argv, int *v_flag)
 		j = i + 1;
 		while (j < argc)
 		{
-			if (!ft_strcmp(argv[i], argv[j]))
+			if (!ft_strncmp(argv[i], argv[j], 5))
 				return (FALSE);
 			j++;
 		}
