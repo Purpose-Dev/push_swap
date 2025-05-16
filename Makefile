@@ -6,9 +6,15 @@
 #    By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/16 10:19:39 by rel-qoqu          #+#    #+#              #
-#    Updated: 2025/05/16 10:33:08 by rel-qoqu         ###   ########.fr        #
+#    Updated: 2025/05/16 10:37:15 by rel-qoqu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
+GREEN		= \033[0;32m
+YELLOW		= \033[0;33m
+RED			= \033[0;31m
+BLUE		= \033[0;34m
+RESET		= \033[0m
 
 NAME		= push_swap
 
@@ -39,40 +45,64 @@ DEBUG_OBJS	= $(patsubst %.c, $(DEBUG_DIR)/%.o, $(SRCS))
 
 HEADERS		= push_swap.h comparator.h parsing.h sorting.h
 
-all: $(OBJ_DIR) $(LIBFT) $(NAME)
+all: $(NAME)
+
+$(NAME): $(OBJ_DIR) $(LIBFT) $(OBJS)
+	@echo "$(BLUE)Compiling $(NAME)...$(RESET)"
+	@$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -o $(NAME)
+	@echo "$(GREEN)$(NAME) successfully compiled!$(RESET)"
 
 $(OBJ_DIR):
-	@mkdir -p $@
+	@mkdir -p $(OBJ_DIR)
 
 $(DEBUG_DIR):
-	@mkdir -p $@
+	@mkdir -p $(DEBUG_DIR)
 
-$(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -o $(NAME)
-
-$(OBJ_DIR)/%.o: %.c
-	$(CC) $(CFLAGS) -I*.h -c $< -o $@
+$(OBJ_DIR)/%.o: %.c $(HEADERS)
+	@echo "$(YELLOW)Compiling $<...$(RESET)"
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 $(LIBFT):
-	make -C $(LIBFT_DIR)
+	@echo "$(BLUE)Compiling libft...$(RESET)"
+	@make -C $(LIBFT_DIR)
+	@echo "$(GREEN)libft successfully compiled!$(RESET)"
 
-debug: $(DEBUG_DIR) $(DEBUG_OBJS)
-	@echo "Debug build complete."
-	@echo "Run with: $(DEBUGGER) ./$(NAME)"
-	@echo "Debug build complete."
+debug: $(DEBUG_DIR) $(LIBFT) $(DEBUG_OBJS)
+	@echo "$(BLUE)Compiling in debug mode...$(RESET)"
+	@$(CC) $(CFLAGS) $(DEBUG_FLAGS) $(DEBUG_OBJS) $(LIBFT) -o $(NAME)_debug
+	@echo "$(GREEN)Debug build complete.$(RESET)"
+	@echo "$(YELLOW)Run with: $(DEBUGGER) ./$(NAME)_debug$(RESET)"
 
-$(DEBUG_DIR)/%.o: %.c
-	$(CC) $(CFLAGS) $(DEBUG_FLAGS) -I*.h -c $< -o $@
+$(DEBUG_DIR)/%.o: %.c $(HEADERS)
+	@echo "$(YELLOW)Compiling $< in debug mode...$(RESET)"
+	@$(CC) $(CFLAGS) $(DEBUG_FLAGS) -c $< -o $@
+
+leaks: $(NAME)
+	@echo "$(BLUE)Checking for memory leaks...$(RESET)"
+	@$(LEAKS) ./$(NAME) 3 1 2 5 4
 
 clean:
-	make -C $(LIBFT_DIR) clean
-	$(RM) -rf $(OBJ_DIR)
-	$(RM) -rf $(DEBUG_DIR)
+	@echo "$(RED)Removing object files...$(RESET)"
+	@make -C $(LIBFT_DIR) clean
+	@$(RM) -rf $(OBJ_DIR)
+	@$(RM) -rf $(DEBUG_DIR)
 
 fclean: clean
-	make -C $(LIBFT_DIR) fclean
-	$(RM) -f $(NAME)
+	@echo "$(RED)Removing executables...$(RESET)"
+	@make -C $(LIBFT_DIR) fclean
+	@$(RM) -f $(NAME)
+	@$(RM) -f $(NAME)_debug
 
 re: fclean all
 
-.PHONY: all clean fclean re debug
+test: $(NAME)
+	@echo "$(BLUE)Test with 5 numbers: $(RESET)"
+	@./$(NAME) 3 1 2 5 4
+	@echo "$(BLUE)Test with 100 random numbers: $(RESET)"
+	@ARG=$(seq 1 100 | sort -R | tr '\n' ' '); ./$(NAME) $ARG | wc -l
+
+norm:
+	@echo "$(BLUE)Checking norm...$(RESET)"
+	@norminette $(SRCS) $(HEADERS) $(LIBFT_DIR)
+
+.PHONY: all clean fclean re debug leaks test norm
