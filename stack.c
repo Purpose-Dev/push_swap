@@ -6,7 +6,7 @@
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 10:51:20 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/05/16 11:09:29 by rel-qoqu         ###   ########.fr       */
+/*   Updated: 2025/05/16 12:02:35 by rel-qoqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,12 @@ void	push(t_stack *stack, int value)
 
 int	pop(t_stack *stack)
 {
-	int	value;
+	int		value;
+	t_node	*node;
 
 	if (stack->size == 0)
 		error_and_exit("Pop from empty stack");
-	t_node	*node = stack->top;
+	node = stack->top;
 	value = node->value;
 	stack->top = node->next;
 	free(node);
@@ -51,7 +52,7 @@ int	pop(t_stack *stack)
 	return (value);
 }
 
-void clear_stack(t_stack *stack)
+void	clear_stack(t_stack *stack)
 {
 	while (stack->size > 0)
 		pop(stack);

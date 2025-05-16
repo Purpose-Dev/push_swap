@@ -6,7 +6,7 @@
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 10:51:44 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/05/16 11:40:46 by rel-qoqu         ###   ########.fr       */
+/*   Updated: 2025/05/16 12:00:30 by rel-qoqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static int	has_duplicate(int argc, char **argv)
 	return (FALSE);
 }
 
-int check_arguments(int argc, char **argv)
+int	check_arguments(int argc, char **argv)
 {
 	int	i;
 
@@ -56,16 +56,17 @@ int check_arguments(int argc, char **argv)
 	return (TRUE);
 }
 
-t_stack *parse_input(int argc, char **argv)
+t_stack	*parse_input(int argc, char **argv)
 {
 	int		i;
 	t_stack	*a;
+	int		value;
 
 	i = 1;
 	a = init_stack();
 	while (i < argc)
 	{
-		int value = ft_atoi(argv[i]);
+		value = ft_atoi(argv[i]);
 		if (has_duplicate(a, value))
 			error_and_exit("Error: Duplicate values");
 		push(a, value);
