@@ -6,7 +6,7 @@
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 10:38:55 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/05/16 10:44:16 by rel-qoqu         ###   ########.fr       */
+/*   Updated: 2025/05/16 12:03:40 by rel-qoqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ typedef struct s_node
 
 typedef struct s_stack
 {
-	t_node *top;
+	t_node	*top;
 	int		size;
 }	t_stack;
 
