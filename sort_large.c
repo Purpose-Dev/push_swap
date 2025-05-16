@@ -6,7 +6,7 @@
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 10:52:21 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/05/16 12:15:37 by rel-qoqu         ###   ########.fr       */
+/*   Updated: 2025/05/16 12:27:57 by rel-qoqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ void	radix_sort(t_stack *a, t_stack *b)
 
 void	sort_large(t_stack *a, t_stack *b, int argc)
 {
+	(void)argc;
 	index_stack(a);
 	radix_sort(a, b);
 }

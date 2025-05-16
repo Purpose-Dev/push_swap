@@ -6,7 +6,7 @@
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 10:51:20 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/05/16 12:02:35 by rel-qoqu         ###   ########.fr       */
+/*   Updated: 2025/05/16 12:28:14 by rel-qoqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	clear_stack(t_stack *stack)
 
 void	error_and_exit(const char *msg)
 {
-	write(2, msg, strlen(msg));
+	write(2, msg, ft_strlen(msg));
 	write(2, "\n", 1);
 	exit(EXIT_FAILURE);
 }

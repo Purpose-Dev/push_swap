@@ -6,7 +6,7 @@
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 10:51:44 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/05/16 12:00:30 by rel-qoqu         ###   ########.fr       */
+/*   Updated: 2025/05/16 12:26:51 by rel-qoqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@ static int	is_number(const char *str)
 			return (FALSE);
 		i++;
 	}
-	retur (TRUE);
+	return (TRUE);
 }
 
-static int	has_duplicate(int argc, char **argv)
+static int	has_duplicate(t_stack *stack, int value)
 {
 	t_node	*current;
 
