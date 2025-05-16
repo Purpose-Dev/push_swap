@@ -6,7 +6,7 @@
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 11:56:16 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/05/16 11:58:28 by rel-qoqu         ###   ########.fr       */
+/*   Updated: 2025/05/16 17:38:26 by rel-qoqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,12 @@
 void	rrb(t_stack *b)
 {
 	rra(b);
+	printf("rrb\n");
 }
 
 void	rrr(t_stack *a, t_stack *b)
 {
 	rra(a);
 	rrb(b);
+	printf("rrr\n");
 }

@@ -6,10 +6,11 @@
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 10:52:47 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/05/16 11:57:51 by rel-qoqu         ###   ########.fr       */
+/*   Updated: 2025/05/16 17:38:12 by rel-qoqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
 #include "sorting.h"
 
 void	ra(t_stack *a)
@@ -27,17 +28,20 @@ void	ra(t_stack *a)
 	while (temp->size > 0)
 		push(a, pop(temp));
 	clear_stack(temp);
+	printf("ra\n");
 }
 
 void	rb(t_stack *b)
 {
 	ra(b);
+	printf("rb\n");
 }
 
 void	rr(t_stack *a, t_stack *b)
 {
 	ra(a);
 	rb(b);
+	printf("rr\n");
 }
 
 void	rra(t_stack *a)
@@ -55,4 +59,5 @@ void	rra(t_stack *a)
 		push(a, pop(temp));
 	push(a, last);
 	clear_stack(temp);
+	printf("rra\n");
 }
