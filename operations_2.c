@@ -6,19 +6,19 @@
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 10:52:47 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/05/16 11:51:11 by rel-qoqu         ###   ########.fr       */
+/*   Updated: 2025/05/16 11:57:51 by rel-qoqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sorting.h"
 
-void ra(t_stack *a)
+void	ra(t_stack *a)
 {
 	int		first;
-	t_stack	*temp
+	t_stack	*temp;
 
 	if (a->size < 2)
-		return;
+		return ;
 	first = pop(a);
 	temp = init_stack();
 	while (a->size > 0)
@@ -40,13 +40,13 @@ void	rr(t_stack *a, t_stack *b)
 	rb(b);
 }
 
-void rra(t_stack *a)
+void	rra(t_stack *a)
 {
 	t_stack	*temp;
-	int		last
+	int		last;
 
 	if (a->size < 2)
-		return;
+		return ;
 	temp = init_stack();
 	while (a->size > 1)
 		push(temp, pop(a));
