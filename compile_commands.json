@@ -1,0 +1,152 @@
+[
+  {
+    "arguments": [
+      "/usr/lib64/ccache/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-c",
+      "-o",
+      "objs/main.o",
+      "main.c"
+    ],
+    "directory": "/mnt/d/42/cursus/common_core/push_swap",
+    "file": "/mnt/d/42/cursus/common_core/push_swap/main.c",
+    "output": "/mnt/d/42/cursus/common_core/push_swap/objs/main.o"
+  },
+  {
+    "arguments": [
+      "/usr/lib64/ccache/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-c",
+      "-o",
+      "objs/comparator.o",
+      "comparator.c"
+    ],
+    "directory": "/mnt/d/42/cursus/common_core/push_swap",
+    "file": "/mnt/d/42/cursus/common_core/push_swap/comparator.c",
+    "output": "/mnt/d/42/cursus/common_core/push_swap/objs/comparator.o"
+  },
+  {
+    "arguments": [
+      "/usr/lib64/ccache/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-c",
+      "-o",
+      "objs/index.o",
+      "index.c"
+    ],
+    "directory": "/mnt/d/42/cursus/common_core/push_swap",
+    "file": "/mnt/d/42/cursus/common_core/push_swap/index.c",
+    "output": "/mnt/d/42/cursus/common_core/push_swap/objs/index.o"
+  },
+  {
+    "arguments": [
+      "/usr/lib64/ccache/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-c",
+      "-o",
+      "objs/operations_1.o",
+      "operations_1.c"
+    ],
+    "directory": "/mnt/d/42/cursus/common_core/push_swap",
+    "file": "/mnt/d/42/cursus/common_core/push_swap/operations_1.c",
+    "output": "/mnt/d/42/cursus/common_core/push_swap/objs/operations_1.o"
+  },
+  {
+    "arguments": [
+      "/usr/lib64/ccache/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-c",
+      "-o",
+      "objs/operations_2.o",
+      "operations_2.c"
+    ],
+    "directory": "/mnt/d/42/cursus/common_core/push_swap",
+    "file": "/mnt/d/42/cursus/common_core/push_swap/operations_2.c",
+    "output": "/mnt/d/42/cursus/common_core/push_swap/objs/operations_2.o"
+  },
+  {
+    "arguments": [
+      "/usr/lib64/ccache/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-c",
+      "-o",
+      "objs/operations_3.o",
+      "operations_3.c"
+    ],
+    "directory": "/mnt/d/42/cursus/common_core/push_swap",
+    "file": "/mnt/d/42/cursus/common_core/push_swap/operations_3.c",
+    "output": "/mnt/d/42/cursus/common_core/push_swap/objs/operations_3.o"
+  },
+  {
+    "arguments": [
+      "/usr/lib64/ccache/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-c",
+      "-o",
+      "objs/parse.o",
+      "parse.c"
+    ],
+    "directory": "/mnt/d/42/cursus/common_core/push_swap",
+    "file": "/mnt/d/42/cursus/common_core/push_swap/parse.c",
+    "output": "/mnt/d/42/cursus/common_core/push_swap/objs/parse.o"
+  },
+  {
+    "arguments": [
+      "/usr/lib64/ccache/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-c",
+      "-o",
+      "objs/sort_large.o",
+      "sort_large.c"
+    ],
+    "directory": "/mnt/d/42/cursus/common_core/push_swap",
+    "file": "/mnt/d/42/cursus/common_core/push_swap/sort_large.c",
+    "output": "/mnt/d/42/cursus/common_core/push_swap/objs/sort_large.o"
+  },
+  {
+    "arguments": [
+      "/usr/lib64/ccache/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-c",
+      "-o",
+      "objs/sort_small.o",
+      "sort_small.c"
+    ],
+    "directory": "/mnt/d/42/cursus/common_core/push_swap",
+    "file": "/mnt/d/42/cursus/common_core/push_swap/sort_small.c",
+    "output": "/mnt/d/42/cursus/common_core/push_swap/objs/sort_small.o"
+  },
+  {
+    "arguments": [
+      "/usr/lib64/ccache/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-c",
+      "-o",
+      "objs/stack.o",
+      "stack.c"
+    ],
+    "directory": "/mnt/d/42/cursus/common_core/push_swap",
+    "file": "/mnt/d/42/cursus/common_core/push_swap/stack.c",
+    "output": "/mnt/d/42/cursus/common_core/push_swap/objs/stack.o"
+  }
+]
