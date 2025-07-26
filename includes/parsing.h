@@ -1,26 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/12 22:39:25 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/05/12 22:41:57 by rel-qoqu         ###   ########.fr       */
+/*   Created: 2025/05/16 10:46:16 by rel-qoqu          #+#    #+#             */
+/*   Updated: 2025/07/26 11:27:34 by rel-qoqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef PARSING_H
+# define PARSING_H
 
-void	*ft_calloc(size_t nmemb, size_t size)
-{
-	void	*ptr;
+# include "limits.h"
+# include "push_swap.h"
+# include "../libs/libft/includes/core/string/ft_string.h"
 
-	if ((size != 0) && (nmemb > SIZE_MAX / size))
-		return (NULL);
-	ptr = (void *)malloc(nmemb * size);
-	if (!ptr)
-		return (NULL);
-	ft_bzero(ptr, (nmemb * size));
-	return (ptr);
-}
+int		check_arguments(int argc, char **argv, int *v_flag);
+t_stack	*parse_input(int argc, char **argv);
+
+#endif // PARSING_H
