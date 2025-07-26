@@ -6,10 +6,11 @@
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/26 11:32:05 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/07/26 12:37:43 by rel-qoqu         ###   ########.fr       */
+/*   Updated: 2025/07/26 12:42:21 by rel-qoqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../includes/parsing.h"
 #include "../includes/push_swap.h"
 
 void	free_element(void *elem)
@@ -49,4 +50,39 @@ int	check_arguments(int argc, char **argv, int *v_flag)
 		i++;
 	}
 	return (argc >= 2);
+}
+
+void	free_split(char **split)
+{
+	int	i;
+
+	if (!split)
+		return ;
+	i = 0;
+	while (split[i])
+	{
+		free(split[i]);
+		i++;
+	}
+	free(split);
+}
+
+int	is_valid_number(const char *str)
+{
+	int		i;
+	long	num;
+
+	i = 0;
+	if (str[i] == '-' || str[i] == '+')
+		i++;
+	if (!str[i])
+		return (FALSE);
+	while (str[i])
+	{
+		if (str[i] < '0' || str[i] > '9')
+			return (FALSE);
+		i++;
+	}
+	num = ft_atol(str);
+	return (num >= INT_MIN && num <= INT_MAX);
 }

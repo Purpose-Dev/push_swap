@@ -6,7 +6,7 @@
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 10:46:16 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/07/26 11:27:34 by rel-qoqu         ###   ########.fr       */
+/*   Updated: 2025/07/26 12:42:00 by rel-qoqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@
 # include "limits.h"
 # include "push_swap.h"
 # include "../libs/libft/includes/core/string/ft_string.h"
+
+void	free_split(char **split);
+int		is_valid_number(const char *str);
 
 int		check_arguments(int argc, char **argv, int *v_flag);
 t_stack	*parse_input(int argc, char **argv);
