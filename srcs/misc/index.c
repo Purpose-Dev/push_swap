@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/sorting.h"
+#include "../../includes/sorting.h"
 
 static int	partition(int *values, int low, int high);
 

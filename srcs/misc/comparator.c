@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/comparator.h"
+#include "../../includes/comparator.h"
 
 int	ft_compare(const int a, const int b)
 {

@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/parsing.h"
-#include "../includes/push_swap.h"
+#include "../../includes/parsing.h"
+#include "../../includes/push_swap.h"
 
 void	free_element(void *elem)
 {
