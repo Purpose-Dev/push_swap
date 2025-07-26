@@ -6,7 +6,7 @@
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 10:47:54 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/07/26 11:29:19 by rel-qoqu         ###   ########.fr       */
+/*   Updated: 2025/07/26 11:59:17 by rel-qoqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,15 @@ void		index_stack(t_stack *stack);
 void		sort_two(t_stack *a);
 void		sort_three(t_stack *a);
 void		sort_five(t_stack *a, t_stack *b);
-void		radix_sort(t_stack *a, t_stack *b);
-void		hybrid_sort(t_stack *a, t_stack *b);
+void		turk_sort(t_stack *a, t_stack *b);
 
 int			is_sorted(t_stack *stack);
 t_element	*get_top(t_stack *stack);
 t_element	*get_bottom(t_stack *stack);
+
+int			find_target_position(t_stack *a, int value);
+int			calculate_cost(t_stack *a, t_stack *b, int target_pos, int b_pos);
+void		execute_rotations(t_stack *a, t_stack *b, int target_pos,
+				int b_pos);
 
 #endif // SORTING_H
