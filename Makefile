@@ -5,105 +5,139 @@
 #                                                     +:+ +:+         +:+      #
 #    By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/05/16 10:19:39 by rel-qoqu          #+#    #+#              #
-#    Updated: 2025/05/16 11:59:02 by rel-qoqu         ###   ########.fr        #
+#    Created: 2025/05/16 11:59:02 by rel-qoqu          #+#    #+#              #
+#    Updated: 2025/07/26 13:37:44 by rel-qoqu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-GREEN		= \033[0;32m
-YELLOW		= \033[0;33m
-RED			= \033[0;31m
-BLUE		= \033[0;34m
-RESET		= \033[0m
+NAME			= push_swap
+CHECKER_NAME	= checker
 
-NAME		= push_swap
-
-CC			= cc
-RM			= rm -f
-CFLAGS		= -Wall -Wextra -Werror
-
-UNAME_S		:= $(shell uname -s)
-ifeq ($(UNAME_S), Darwin)
-    DEBUG_FLAGS	= -g -O0 -DDEBUG
-    DEBUGGER	= lldb
-    LEAKS		= leaks --atExit --
-else ifeq ($(UNAME_S), Linux)
-    DEBUG_FLAGS	= -ggdb -O0 -DDEBUG
-    DEBUGGER	= gdb --args
-    LEAKS		= valgrind --leak-check=full
-endif
-
-LIBFT_DIR	= libft
-LIBFT		= $(LIBFT_DIR)/libft.a
-
+SRCS_DIR		= ./srcs
+INC_DIR			= ./includes
 OBJ_DIR			= objs
-DEBUG_DIR		= debug_objs
+DEBUG_OBJ_DIR	= debug_objs
+LIBFT_DIR		= libs/libft
+LIBFT			= $(LIBFT_DIR)/libft.a
 
-SRCS		= main.c comparator.c index.c operations_1.c operations_2.c \
-				operations_3.c parse.c sort_large.c sort_small.c stack.c
-OBJS		= $(patsubst %.c, $(OBJ_DIR)/%.o, $(SRCS))
-DEBUG_OBJS	= $(patsubst %.c, $(DEBUG_DIR)/%.o, $(SRCS))
+SRCS_FILES		= misc/comparator.c misc/index.c misc/parse.c misc/utils.c \
+					operations/operations_0.c operations/operations_1.c operations/operations_2.c \
+					sorting/cost_and_execute_utils.c sorting/cost_and_execute_utils_1.c \
+					sorting/sort_large.c sorting/sort_small_0.c sorting/sort_small_1.c \
+					sorting/target_position_utils.c stack/stack_0.c stack/stack_1.c
 
-HEADERS		= push_swap.h comparator.h parsing.h sorting.h
+COMMON_SRCS_FILES	= misc/comparator.c misc/index.c misc/parse.c misc/utils.c \
+						operations/operations_0.c operations/operations_1.c operations/operations_2.c \
+						sorting/cost_and_execute_utils.c sorting/cost_and_execute_utils_1.c \
+						sorting/sort_large.c sorting/sort_small_0.c sorting/sort_small_1.c \
+						sorting/target_position_utils.c stack/stack_0.c stack/stack_1.c
+
+CHECKER_SPECIFIC_SRCS   = misc/checker_utils.c checker.c
+
+SRCS			= $(addprefix $(SRCS_DIR)/, $(COMMON_SRCS_FILES) main.c)
+OBJS			= $(patsubst $(SRCS_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRCS))
+DEPS			= $(patsubst $(SRCS_DIR)/%.c, $(OBJ_DIR)/%.d, $(SRCS))
+
+CHECKER_SRCS	= $(addprefix $(SRCS_DIR)/, $(COMMON_SRCS_FILES) $(CHECKER_SPECIFIC_SRCS))
+CHECKER_OBJS	= $(patsubst $(SRCS_DIR)/%.c, $(OBJ_DIR)/%.o, $(CHECKER_SRCS))
+CHECKER_DEPS	= $(patsubst $(SRCS_DIR)/%.c, $(OBJ_DIR)/%.d, $(CHECKER_SRCS))
+
+DEBUG_OBJS		= $(patsubst $(SRCS_DIR)/%.c, $(DEBUG_OBJ_DIR)/%.o, $(SRCS))
+DEBUG_DEPS		= $(patsubst $(SRCS_DIR)/%.c, $(DEBUG_OBJ_DIR)/%.d, $(SRCS))
+
+CC           = gcc
+RM           = rm -f
+CFLAGS        = -Wall -Wextra -Werror -I$(INC_DIR) -MMD -MP
+
+HEADERS_FILENAMES = push_swap.h comparator.h parsing.h sorting.h checker.h
+HEADERS_PATHS = $(addprefix $(INC_DIR)/, $(HEADERS_FILENAMES))
 
 all: $(NAME)
 
+bonus: $(CHECKER_NAME)
+
 $(NAME): $(OBJ_DIR) $(LIBFT) $(OBJS)
-	@echo "$(BLUE)Compiling $(NAME)...$(RESET)"
+	@echo "$(GREEN)Compiling $(NAME)...$(NO_COLOR)"
 	@$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -o $(NAME)
-	@echo "$(GREEN)$(NAME) successfully compiled!$(RESET)"
+	@echo "$(GREEN)$(NAME) successfully compiled!$(NO_COLOR)"
+
+$(CHECKER_NAME): $(OBJ_DIR) $(LIBFT) $(CHECKER_OBJS)
+	@echo "$(GREEN)Compiling $(CHECKER_NAME)...$(NO_COLOR)"
+	@$(CC) $(CFLAGS) $(CHECKER_OBJS) $(LIBFT) -o $(CHECKER_NAME)
+	@echo "$(GREEN)$(CHECKER_NAME) successfully compiled!$(NO_COLOR)"
 
 $(OBJ_DIR):
 	@mkdir -p $(OBJ_DIR)
 
-$(DEBUG_DIR):
-	@mkdir -p $(DEBUG_DIR)
+$(DEBUG_OBJ_DIR):
+	@mkdir -p $(DEBUG_OBJ_DIR)
 
-$(OBJ_DIR)/%.o: %.c $(HEADERS)
-	@echo "$(YELLOW)Compiling $<...$(RESET)"
+$(OBJ_DIR)/%.o: $(SRCS_DIR)/%.c $(HEADERS_PATHS)
+	@mkdir -p $(dir $@)
+	@echo "$(YELLOW)Compiling $<...$(NO_COLOR)"
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 $(LIBFT):
-	@echo "$(BLUE)Compiling libft...$(RESET)"
-	@make -C $(LIBFT_DIR)
-	@echo "$(GREEN)libft successfully compiled!$(RESET)"
+	@echo "$(GREEN)Compiling libft...$(NO_COLOR)"
+	@make -C $(LIBFT_DIR) -j
+	@echo "$(GREEN)libft successfully compiled!$(NO_COLOR)"
 
-debug: $(DEBUG_DIR) $(LIBFT) $(DEBUG_OBJS)
-	@echo "$(BLUE)Compiling in debug mode...$(RESET)"
+debug: $(DEBUG_OBJ_DIR) $(LIBFT) $(DEBUG_OBJS)
+	@echo "$(BLUE)Compiling in debug mode...$(NO_COLOR)"
 	@$(CC) $(CFLAGS) $(DEBUG_FLAGS) $(DEBUG_OBJS) $(LIBFT) -o $(NAME)_debug
-	@echo "$(GREEN)Debug build complete.$(RESET)"
-	@echo "$(YELLOW)Run with: $(DEBUGGER) ./$(NAME)_debug$(RESET)"
+	@echo "$(BLUE)Debug build complete.$(NO_COLOR)"
+	@echo "Run with: $(DEBUGGER) ./$(NAME)_debug"
 
-$(DEBUG_DIR)/%.o: %.c $(HEADERS)
-	@echo "$(YELLOW)Compiling $< in debug mode...$(RESET)"
+$(DEBUG_OBJ_DIR)/%.o: $(SRCS_DIR)/%.c $(HEADERS_PATHS)
+	@mkdir -p $(dir $@)
+	@echo "$(YELLOW)Compiling $< in debug mode...$(NO_COLOR)"
 	@$(CC) $(CFLAGS) $(DEBUG_FLAGS) -c $< -o $@
 
-leaks: $(NAME)
-	@echo "$(BLUE)Checking for memory leaks...$(RESET)"
-	@$(LEAKS) ./$(NAME) 3 1 2 5 4
+leaks: $(NAME)_debug
+	@echo "$(BLUE)Checking for memory leaks...$(NO_COLOR)"
+	@$(LEAKS) ./$(NAME)_debug 3 1 2 5 4
 
 clean:
-	@echo "$(RED)Removing object files...$(RESET)"
+	@echo "$(RED)Removing object files...$(NO_COLOR)"
 	@make -C $(LIBFT_DIR) clean
 	@$(RM) -rf $(OBJ_DIR)
-	@$(RM) -rf $(DEBUG_DIR)
+	@$(RM) -rf $(DEBUG_OBJ_DIR)
+	@$(RM) -f $(OBJ_DIR)/*.d $(DEBUG_OBJ_DIR)/*.d
 
 fclean: clean
-	@echo "$(RED)Removing executables...$(RESET)"
+	@echo "$(RED)Removing executables...$(NO_COLOR)"
 	@make -C $(LIBFT_DIR) fclean
 	@$(RM) -f $(NAME)
 	@$(RM) -f $(NAME)_debug
+	@$(RM) -f $(CHECKER_NAME)
 
 re: fclean all
 
 test: $(NAME)
-	@echo "$(BLUE)Test with 5 numbers: $(RESET)"
+	@echo "$(BLUE)--- Testing push_swap ---$(NO_COLOR)"
+	@echo "$(BLUE)Test with 5 numbers: $(NO_COLOR)"
 	@./$(NAME) 3 1 2 5 4
-	@echo "$(BLUE)Test with 100 random numbers: $(RESET)"
-	@ARG=$(seq 1 100 | sort -R | tr '\n' ' '); ./$(NAME) $ARG | wc -l
+	@echo ""
+	@echo "$(BLUE)Test with 100 random numbers (operations count):$(NO_COLOR)"
+	@ARG=$$(shuf -i 0-99 -n 100 | tr '\n' ' '); \
+	./$(NAME) "$$ARG" | grep -v "DEBUG" | wc -l
+	@echo ""
+	@echo "$(BLUE)Test with 100 random numbers and checker:$(NO_COLOR)"
+	@ARG=$$(shuf -i 0-99 -n 100 | tr '\n' ' '); \
+	./$(NAME) "$$ARG" | ./checker_linux "$$ARG"
+	@echo ""
+	@echo "$(BLUE)Test with 500 random numbers (operations count):$(NO_COLOR)"
+	@ARG=$$(shuf -i 0-499 -n 500 | tr '\n' ' '); \
+	./$(NAME) "$$ARG" | grep -v "DEBUG" | wc -l
+	@echo ""
+	@echo "$(BLUE)Test with 500 random numbers and checker:$(NO_COLOR)"
+	@ARG=$$(shuf -i 0-499 -n 500 | tr '\n' ' '); \
+	./$(NAME) "$$ARG" | ./checker_linux "$$ARG"
+	@echo ""
+	@echo "$(BLUE)--- Tests complete ---$(NO_COLOR)"
 
 norm:
-	@echo "$(BLUE)Checking norm...$(RESET)"
-	@norminette $(SRCS) $(HEADERS) $(LIBFT_DIR)
+	@echo "$(YELLOW)Checking norm...$(NO_COLOR)"
+	@norminette $(SRCS) $(HEADERS_PATHS) $(LIBFT_DIR)
 
-.PHONY: all clean fclean re debug leaks test norm
+.PHONY: all bonus clean fclean re debug leaks test norm
