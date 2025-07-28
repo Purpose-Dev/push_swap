@@ -6,7 +6,7 @@
 #    By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/16 11:59:02 by rel-qoqu          #+#    #+#              #
-#    Updated: 2025/07/26 13:37:44 by rel-qoqu         ###   ########.fr        #
+#    Updated: 2025/07/28 10:52:11 by rel-qoqu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,7 @@ CHECKER_DEPS	= $(patsubst $(SRCS_DIR)/%.c, $(OBJ_DIR)/%.d, $(CHECKER_SRCS))
 DEBUG_OBJS		= $(patsubst $(SRCS_DIR)/%.c, $(DEBUG_OBJ_DIR)/%.o, $(SRCS))
 DEBUG_DEPS		= $(patsubst $(SRCS_DIR)/%.c, $(DEBUG_OBJ_DIR)/%.d, $(SRCS))
 
-CC           = gcc
+CC           = cc
 RM           = rm -f
 CFLAGS        = -Wall -Wextra -Werror -I$(INC_DIR) -MMD -MP
 

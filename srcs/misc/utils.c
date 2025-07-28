@@ -6,7 +6,7 @@
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/26 11:32:05 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/07/26 12:42:21 by rel-qoqu         ###   ########.fr       */
+/*   Updated: 2025/07/28 10:51:15 by rel-qoqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,7 @@ void	free_element(void *elem)
 
 void	error_and_exit(const char *msg)
 {
-	ft_dprintf(2, msg);
-	ft_dprintf(2, "\n");
+	ft_dprintf(2, "%s\n", msg);
 	exit(EXIT_FAILURE);
 }
 
